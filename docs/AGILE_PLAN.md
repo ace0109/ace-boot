@@ -45,6 +45,14 @@ Task 1.3: 配置开发环境profile (1h)
 │   □ 日志级别正确配置
 │   □ 本地开发可正常启动
 └── 状态：待开始
+
+Task 1.4: 配置质量保障工具链 (3h) 【新增-基于AI讨论共识】
+├── 验收标准：
+│   □ JaCoCo插件配置完成
+│   □ 覆盖率阈值设置（核心工具100%，辅助90%）
+│   □ Checkstyle配置（阿里巴巴规范）
+│   □ CI集成质量检查
+└── 状态：待开始
 ```
 
 #### User Story 2: 作为开发者，我需要清晰的项目文档
@@ -79,15 +87,34 @@ Task 2.3: 创建敏捷开发计划 (2h)
 #### User Story 3: 作为开发者，我需要统一的API响应格式
 **任务拆解：**
 ```
-Task 3.1: 将项目转换为Maven多模块 (2h)
-├── 实现步骤：
-│   1. 修改根pom.xml为pom打包方式
-│   2. 创建ace-boot-common模块
-│   3. 将原代码移至ace-boot-samples模块
+Task 3.1: 将项目转换为Maven多模块 - 【细化为子任务】
+
+Task 3.1.1: 修改根pom.xml为pom打包方式 (1h)
+├── 验收标准：
+│   □ packaging改为pom
+│   □ 定义modules节点
+│   □ mvn clean compile 成功
+└── 状态：待开始
+
+Task 3.1.2: 创建ace-boot-common基础模块 (2h)
+├── 验收标准：
+│   □ 模块pom.xml配置正确
+│   □ 包结构规范
+│   □ 模块可独立编译
+└── 状态：待开始
+
+Task 3.1.3: 迁移现有代码到ace-boot-samples (2h)
+├── 验收标准：
+│   □ 代码迁移完整
+│   □ 依赖关系正确
+│   □ samples模块可独立运行
+└── 状态：待开始
+
+Task 3.1.4: 多模块结构冒烟测试 (1h)
 ├── 验收标准：
 │   □ mvn clean install 成功
-│   □ 多模块结构正确
-│   □ samples模块可独立运行
+│   □ samples模块启动正常
+│   □ 健康检查端点工作
 └── 状态：待开始
 
 Task 3.2: 创建统一响应类Result (2h)
@@ -539,6 +566,28 @@ mvn dependency:tree
 3. **及时重构**：发现问题立即改进
 4. **保持沟通**：遇到阻塞及时反馈
 5. **文档同步**：代码和文档同步更新
+
+## 能力与User Story对照表
+
+基于AI讨论共识添加，用于追踪功能实现状态：
+
+| 核心能力 | 对应User Story | 所在Sprint | 当前状态 |
+|---------|---------------|------------|----------|
+| 健康检查 | Task 1.2 | Sprint 0 | 🟢 已完成 |
+| 质量工具链 | Task 1.4 | Sprint 0 | 🔴 未开始 |
+| Maven多模块 | Task 3.1.* | Sprint 1 | 🔴 未开始 |
+| 统一响应格式 | Task 3.2 | Sprint 1 | 🔴 未开始 |
+| 全局异常处理 | Task 3.3 | Sprint 1 | 🔴 未开始 |
+| JWT认证 | Task 7.* | Sprint 3 | 🔴 未开始 |
+| RBAC权限 | Task 8.* | Sprint 3 | 🔴 未开始 |
+| MyBatis Plus | Task 9.* | Sprint 4 | 🔴 未开始 |
+| Redis缓存 | Task 11.* | Sprint 5 | 🔴 未开始 |
+| DDD示例 | Task 12.* | Sprint 6 | 🔴 未开始 |
+
+**状态更新规则**：
+- 任务开始时更新为 🟡 开发中
+- 任务完成并测试通过后更新为 🟢 已完成
+- 状态变更需同步更新 ARCHITECTURE.md 中的模块状态
 
 ---
 

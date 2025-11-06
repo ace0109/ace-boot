@@ -220,6 +220,33 @@ public class UserRepositoryImpl implements UserRepository {
 
 ### 3.3 模块设计
 
+#### 模块实现状态
+
+| 模块 | 状态 | 说明 |
+|------|------|------|
+| ace-boot-dependencies | 🔴 未开始 | 依赖版本管理 |
+| ace-boot-parent | 🔴 未开始 | 父POM配置 |
+| ace-boot-common-core | 🔴 未开始 | 核心工具类 |
+| ace-boot-common-web | 🔴 未开始 | Web工具类 |
+| ace-boot-common-redis | 🔴 未开始 | Redis工具类 |
+| ace-boot-starter-web | 🔴 未开始 | Web自动配置 |
+| ace-boot-starter-security | 🔴 未开始 | 安全认证 |
+| ace-boot-starter-mybatis | 🔴 未开始 | 数据访问 |
+| ace-boot-starter-redis | 🔴 未开始 | 缓存配置 |
+| ace-boot-starter-doc | 🔴 未开始 | API文档 |
+| ace-boot-starter-monitor | 🔴 未开始 | 监控配置 |
+| ace-boot-starter-log | 🔴 未开始 | 日志配置 |
+| ace-boot-starter-limiter | 🔴 未开始 | 限流配置 |
+| ace-boot-starter-job | 🔴 未开始 | 任务调度 |
+| ace-boot-generator | 🔴 未开始 | 代码生成器 |
+| ace-boot-samples | 🟢 已完成 | 示例项目（当前为单体） |
+
+**状态说明**：
+- 🔴 未开始 - 尚未开始开发
+- 🟡 开发中 - 正在开发
+- 🟢 已完成 - 已完成并测试
+- ⏳ 计划中 - 已规划但未排期
+
 #### 3.3.1 ace-boot-common
 
 公共模块，提供基础工具类和通用功能。
