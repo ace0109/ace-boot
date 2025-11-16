@@ -18,3 +18,18 @@ management:
   health:
     defaults:
       enabled: true
+
+aceboot:
+  cors:
+    enabled: true
+    allowed-origins:
+      - "https://example.com"
+      - "http://localhost:3000"
+    allowed-methods:
+      - GET
+      - POST
+      - OPTIONS
+    allowed-headers:
+      - "*"
+    allow-credentials: true
+    max-age: 3600

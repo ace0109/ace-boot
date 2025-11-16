@@ -112,6 +112,26 @@ curl -X POST http://localhost:8080/greetings \
 {"code":"VALIDATION_ERROR","message":"昵称不能为空"}
 ```
 
+
+### 跨域配置
+
+- Web Starter 提供 `aceboot.cors.*` 配置项，用于集中管理 CORS 策略。
+- 将 `aceboot.cors.enabled=true` 后会自动注册 `CorsConfigurationSource`，并按配置输出允许的 Origin、Method、Headers 与 Cookie 策略。
+- 示例（`application.yml`）：
+
+```yaml
+aceboot:
+  cors:
+    enabled: true
+    allowed-origins:
+      - "https://example.com"
+      - "http://localhost:3000"
+    allowed-methods:
+      - GET
+      - POST
+    allow-credentials: true
+```
+
 ### Docker部署
 
 ```bash
