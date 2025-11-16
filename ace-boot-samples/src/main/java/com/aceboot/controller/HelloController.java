@@ -1,5 +1,6 @@
 package com.aceboot.controller;
 
+import com.aceboot.common.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @GetMapping("/")
-    public String hello() {
-        return "🚀 Welcome to Ace Boot!";
+    public Result<String> hello() {
+        return Result.success("🚀 Welcome to Ace Boot!");
     }
 }
