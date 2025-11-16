@@ -26,4 +26,13 @@ class HelloControllerTest {
                 .andExpect(jsonPath("$.data").value("🚀 Welcome to Ace Boot!"))
                 .andExpect(jsonPath("$.timestamp").exists());
     }
+
+    @Test
+    void simulateErrorShouldReturnBusinessResult() throws Exception {
+        mockMvc.perform(get("/simulate-error"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value("BIZ_ERROR"))
+                .andExpect(jsonPath("$.message").value("演示异常"))
+                .andExpect(jsonPath("$.data").doesNotExist());
+    }
 }
