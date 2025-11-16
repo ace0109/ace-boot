@@ -113,6 +113,28 @@ curl -X POST http://localhost:8080/greetings \
 ```
 
 
+### 接口版本控制
+
+- 使用 `@ApiVersion` 注解声明支持的版本号，可作用于类或方法。
+- URL 形态 `.../v{version}/...` 将自动解析版本，未带版本时回退至 v1，保持向后兼容。
+- 示例：
+
+```java
+@RestController
+@RequestMapping("/api")
+class VersionedGreetingController {
+
+    @GetMapping("/v{version}/greetings")
+    @ApiVersion(1)
+    Result<String> v1(@PathVariable String version) { ... }
+
+    @GetMapping("/v{version}/greetings")
+    @ApiVersion(2)
+    Result<String> v2(@PathVariable String version) { ... }
+}
+```
+
+
 ### 跨域配置
 
 - Web Starter 提供 `aceboot.cors.*` 配置项，用于集中管理 CORS 策略。

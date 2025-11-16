@@ -1,2 +1,3 @@
 com.aceboot.starter.web.AceBootWebAutoConfiguration
 com.aceboot.starter.web.CorsAutoConfiguration
+com.aceboot.starter.web.ApiVersionAutoConfiguration

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 import com.aceboot.health.HtmlAcceptRequestCondition;
 import com.aceboot.health.HtmlOnly;
+import com.aceboot.starter.web.VersionedRequestMappingHandlerMapping;
 
 /**
  * 将标准 MVC 映射的顺序提升到最高优先级，
@@ -22,7 +23,7 @@ public class HtmlEndpointWebMvcConfig implements WebMvcRegistrations {
 
     @Override
     public RequestMappingHandlerMapping getRequestMappingHandlerMapping() {
-        return new RequestMappingHandlerMapping() {
+        return new VersionedRequestMappingHandlerMapping() {
             @Override
             public void afterPropertiesSet() {
                 setOrder(Ordered.HIGHEST_PRECEDENCE);

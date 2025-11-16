@@ -5,3 +5,4 @@
 - 2025-11-16 Codex：已创建 `ace-boot-starter-web` 模块，自动装配请求日志拦截器并在 samples 模块验证依赖链路，准备继续处理 Web 能力后续任务。
 - 2025-11-16 Codex：实现 Task 5.2 参数验证，提供自定义 `@AllowedValues` 注解、友好的校验错误提示以及 `/greetings` 示例接口。
 - 2025-11-16 Codex：配置 CORS 自动装配（aceboot.cors.*），示例项目启用跨域并通过集成测试校验证明跨域请求可用。
+- 2025-11-16 Codex：实现 Task 5.4 接口版本控制，提供 @ApiVersion 注解、版本条件映射以及示例控制器和测试。
