@@ -41,18 +41,25 @@ Task 1.2: 添加基础的健康检查端点 (1h)
 
 Task 1.3: 配置开发环境profile (1h)
 ├── 验收标准：
-│   □ application-dev.yml 配置完成
-│   □ 日志级别正确配置
-│   □ 本地开发可正常启动
-└── 状态：待开始
+│   ✅ application-dev.yml 配置完成
+│   ✅ 日志级别正确配置
+│   ✅ 本地开发可正常启动
+└── 状态：已完成
 
 Task 1.4: 配置质量保障工具链 (3h) 【新增-基于AI讨论共识】
 ├── 验收标准：
-│   □ JaCoCo插件配置完成
-│   □ 覆盖率阈值设置（核心工具100%，辅助90%）
-│   □ Checkstyle配置（阿里巴巴规范）
-│   □ CI集成质量检查
-└── 状态：待开始
+│   ✅ JaCoCo插件配置完成
+│   ✅ 覆盖率阈值设置（核心工具100%，辅助90%）
+│   ✅ Checkstyle配置（阿里巴巴规范）
+│   ✅ CI集成质量检查（`./mvnw clean verify` 集成质量门禁，可直接给 CI 复用）
+└── 状态：已完成
+
+Task 1.5: 浏览器友好的健康检查 (1h)
+├── 验收标准：
+│   ✅ /actuator/health 在 Accept 为 text/html 时以 HTML 渲染
+│   ✅ 接口仍支持 JSON 能力（Accept=application/json）
+│   ✅ 添加针对 HTML 视图的切片测试
+└── 状态：已完成
 ```
 
 #### User Story 2: 作为开发者，我需要清晰的项目文档
@@ -94,28 +101,28 @@ Task 3.1.1: 修改根pom.xml为pom打包方式 (1h)
 │   □ packaging改为pom
 │   □ 定义modules节点
 │   □ mvn clean compile 成功
-└── 状态：待开始
+└── 状态：已完成
 
 Task 3.1.2: 创建ace-boot-common基础模块 (2h)
 ├── 验收标准：
 │   □ 模块pom.xml配置正确
 │   □ 包结构规范
 │   □ 模块可独立编译
-└── 状态：待开始
+└── 状态：已完成
 
 Task 3.1.3: 迁移现有代码到ace-boot-samples (2h)
 ├── 验收标准：
 │   □ 代码迁移完整
 │   □ 依赖关系正确
 │   □ samples模块可独立运行
-└── 状态：待开始
+└── 状态：已完成
 
 Task 3.1.4: 多模块结构冒烟测试 (1h)
 ├── 验收标准：
 │   □ mvn clean install 成功
 │   □ samples模块启动正常
 │   □ 健康检查端点工作
-└── 状态：待开始
+└── 状态：已完成
 
 Task 3.2: 创建统一响应类Result (2h)
 ├── 实现步骤：
