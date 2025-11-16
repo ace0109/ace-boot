@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN" "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<!--
+  基于《阿里巴巴 Java 开发手册》抽取的核心校验规则，覆盖命名、导入、空格和不可用 API 等内容。
+  可在 config/checkstyle 目录下补充自定义 suppressions。
+-->
+<module name="Checker">
+    <property name="severity" value="error"/>
+    <property name="charset" value="UTF-8"/>
+    <property name="fileExtensions" value="java"/>
+
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+
+    <module name="LineLength">
+        <property name="max" value="120"/>
+        <property name="ignorePattern" value="^package|^import|a href|href|http"/>
+    </module>
+
+    <module name="NewlineAtEndOfFile"/>
+
+    <module name="TreeWalker">
+        <module name="OuterTypeFilename"/>
+        <module name="PackageDeclaration"/>
+        <module name="OneTopLevelClass"/>
+
+        <module name="AvoidStarImport"/>
+        <module name="IllegalImport">
+            <property name="illegalPkgs" value="sun,com.sun"/>
+        </module>
+        <module name="UnusedImports"/>
+        <module name="ImportOrder">
+            <property name="groups" value="java,javax,org,com"/>
+            <property name="ordered" value="true"/>
+            <property name="separated" value="true"/>
+        </module>
+
+        <module name="TypeName">
+            <property name="format" value="^[A-Z][A-Za-z0-9]*$"/>
+        </module>
+        <module name="ClassTypeParameterName">
+            <property name="format" value="^[A-Z][A-Za-z0-9]*$"/>
+        </module>
+        <module name="MethodName">
+            <property name="format" value="^[a-z][A-Za-z0-9]*$"/>
+        </module>
+        <module name="ParameterName">
+            <property name="format" value="^[a-z][A-Za-z0-9]*$"/>
+        </module>
+        <module name="MemberName">
+            <property name="format" value="^[a-z][A-Za-z0-9]*$"/>
+        </module>
+        <module name="ConstantName"/>
+        <module name="LocalVariableName">
+            <property name="format" value="^[a-z][A-Za-z0-9]*$"/>
+        </module>
+
+        <module name="MethodLength">
+            <property name="max" value="80"/>
+        </module>
+        <module name="ParameterNumber">
+            <property name="max" value="5"/>
+        </module>
+
+        <module name="NeedBraces"/>
+        <module name="LeftCurly">
+            <property name="option" value="eol"/>
+        </module>
+        <module name="RightCurly">
+            <property name="option" value="alone"/>
+        </module>
+        <module name="WhitespaceAround"/>
+        <module name="WhitespaceAfter"/>
+        <module name="NoWhitespaceBefore"/>
+        <module name="EmptyLineSeparator">
+            <property name="allowNoEmptyLineBetweenFields" value="true"/>
+        </module>
+
+        <module name="MagicNumber">
+            <property name="ignoreNumbers" value="-1,0,1,2,1000"/>
+            <property name="ignoreHashCodeMethod" value="true"/>
+        </module>
+        <module name="IllegalTokenText">
+            <property name="format" value="System\.out\.print|System\.err\.print|Thread\.sleep"/>
+            <property name="message" value="禁止直接使用 System.out/System.err/Thread.sleep，需使用日志或受控工具。"/>
+        </module>
+        <module name="TodoComment">
+            <property name="format" value="TODO|FIXME"/>
+        </module>
+    </module>
+
+    <module name="RegexpSingleline">
+        <property name="format" value="\s+$"/>
+        <property name="message" value="行尾不能包含多余的空白字符"/>
+    </module>
+</module>

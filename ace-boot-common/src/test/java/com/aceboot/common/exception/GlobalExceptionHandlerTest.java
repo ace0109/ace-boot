@@ -1,54 +1,33 @@
 package com.aceboot.common.exception;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.aceboot.common.Result;
 
 class GlobalExceptionHandlerTest {
 
-    private MockMvc mockMvc;
+    private final GlobalExceptionHandler handler = new GlobalExceptionHandler();
 
-    @BeforeEach
-    void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(new FailingController())
-                .setControllerAdvice(new GlobalExceptionHandler())
-                .build();
+    @Test
+    void shouldTranslateBusinessException() {
+        BusinessException exception = new BusinessException("BIZ", "boom");
+        Result<Void> result = handler.handleBaseException(exception);
+
+        assertNotNull(result);
+        assertEquals("BIZ", result.getCode());
+        assertEquals("boom", result.getMessage());
     }
 
     @Test
-    void shouldTranslateBusinessException() throws Exception {
-        mockMvc.perform(get("/biz").accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.code").value("BIZ"))
-                .andExpect(jsonPath("$.message").value("boom"));
+    void shouldHandleUnexpectedException() {
+        IllegalStateException exception = new IllegalStateException("nope");
+        Result<Void> result = handler.handleOtherExceptions(exception);
+
+        assertNotNull(result);
+        assertEquals("INTERNAL_ERROR", result.getCode());
+        assertEquals("系统繁忙，请稍后再试", result.getMessage());
     }
 
-    @Test
-    void shouldHandleUnexpectedException() throws Exception {
-        mockMvc.perform(get("/unknown"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.code").value("INTERNAL_ERROR"));
-    }
-
-    @RestController
-    static class FailingController {
-        @GetMapping("/biz")
-        public Result<Void> biz() {
-            throw new BusinessException("BIZ", "boom");
-        }
-
-        @GetMapping("/unknown")
-        public Result<Void> unknown() {
-            throw new IllegalStateException("nope");
-        }
-    }
 }

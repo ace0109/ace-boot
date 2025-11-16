@@ -16,6 +16,7 @@ public class RequestLogInterceptor implements HandlerInterceptor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RequestLogInterceptor.class);
     private static final String START_TIME_ATTRIBUTE = RequestLogInterceptor.class.getName() + ".START";
+    private static final String LOG_TEMPLATE = "HTTP {} {} status={} duration={}ms params={} remote={}";
 
     private final RequestLogProperties properties;
 
@@ -32,7 +33,10 @@ public class RequestLogInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+    public void afterCompletion(HttpServletRequest request,
+            HttpServletResponse response,
+            Object handler,
+            Exception ex) {
         if (!properties.isEnabled()) {
             return;
         }
@@ -42,13 +46,13 @@ public class RequestLogInterceptor implements HandlerInterceptor {
         }
         long duration = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNanos);
         String query = request.getQueryString();
-        LOGGER.info(
-                "HTTP {} {} status={} duration={}ms params={} remote={}",
+        String params = query == null ? "-" : query;
+        LOGGER.info(LOG_TEMPLATE,
                 request.getMethod(),
                 request.getRequestURI(),
                 response.getStatus(),
                 duration,
-                query == null ? "-" : query,
+                params,
                 request.getRemoteAddr());
     }
 }

@@ -9,14 +9,10 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import jakarta.servlet.http.HttpServletResponse;
-
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class RequestLogInterceptorTest {
 
@@ -34,7 +30,7 @@ class RequestLogInterceptorTest {
         MockHttpServletRequest request = new MockHttpServletRequest("GET", "/hello");
         request.setQueryString("name=ace");
         MockHttpServletResponse response = new MockHttpServletResponse();
-        response.setStatus(HttpServletResponse.SC_OK);
+        response.setStatus(jakarta.servlet.http.HttpServletResponse.SC_OK);
 
         Logger logger = (Logger) LoggerFactory.getLogger(RequestLogInterceptor.class);
         ListAppender<ILoggingEvent> appender = new ListAppender<>();
@@ -49,9 +45,10 @@ class RequestLogInterceptorTest {
         }
 
         List<ILoggingEvent> events = appender.list;
-        assertThat(events).isNotEmpty();
-        assertThat(events.get(0).getLevel()).isEqualTo(Level.INFO);
-        assertThat(events.get(0).getFormattedMessage()).contains("GET", "/hello", "name=ace");
+        org.assertj.core.api.Assertions.assertThat(events).isNotEmpty();
+        org.assertj.core.api.Assertions.assertThat(events.get(0).getLevel()).isEqualTo(Level.INFO);
+        org.assertj.core.api.Assertions.assertThat(events.get(0).getFormattedMessage())
+                .contains("GET", "/hello", "name=ace");
     }
 
     @Test
@@ -72,6 +69,6 @@ class RequestLogInterceptorTest {
             logger.detachAppender(appender);
         }
 
-        assertThat(appender.list).isEmpty();
+        org.assertj.core.api.Assertions.assertThat(appender.list).isEmpty();
     }
 }

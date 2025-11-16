@@ -1,6 +1,6 @@
 # Repository Guidelines for ACE-Boot
 
-欢迎贡献代码与想法！为确保项目质量与协作效率，请遵循以下规范。
+欢迎贡献代码与想法！为确保项目质量与协作效率，请遵循以下规范。**特别提醒：与本仓库相关的所有回复与讨论必须使用中文输出，严禁使用其他语言。**
 
 ## 项目结构与模块组织
 ACE-Boot 基于 Spring Boot 3 与轻量级 DDD 架构。核心代码位于 `src/main/java/com/aceboot`，对外接口集中在 `controller`，通用健康检查在 `health`。公共配置存放于 `src/main/resources`，以 `application.yml` 作为入口；贡献指南与设计文档统一放在 `docs/`。新增测试时请在 `src/test/java` 下按照生产包路径进行镜像。Maven 构建产物写入 `target/`，务必保持该目录不被提交。
@@ -29,7 +29,7 @@ ACE-Boot 基于 Spring Boot 3 与轻量级 DDD 架构。核心代码位于 `src/
 环境差异配置建议放入 `src/main/resources/application-<profile>.yml`，通过 `SPRING_PROFILES_ACTIVE` 激活。任何密钥或凭证均不得入库，优先使用 `ACEBOOT_*` 环境变量或部署平台的密钥托管。新增敏感配置时，将默认说明写入 `docs/configuration.md`，并确保相关健康检查已覆盖。
 
 ## 敏捷流程与服务管理
-参考 `docs/AGILE_PLAN.md` 了解当前迭代目标，按照计划拆分任务，小步提交并同步更新任务状态。每个迭代须完成文档补充（含结构、配置、API 说明），并确保核心模块测试覆盖率 ≥ 80%。启动本地服务（如 `./mvnw spring-boot:run`）作业完成后务必停止，可用 `lsof -i:8080` 与 `ps aux | grep spring-boot` 排查遗留进程，如有残留立刻 `kill -9 <PID>` 释放端口。
+参考 `docs/AGILE_PLAN.md` 了解当前迭代目标，按照计划拆分任务，小步提交并同步更新任务状态。**每当完成任一任务，必须立即在计划文档（如 `docs/AGILE_PLAN.md`）中更新对应状态，并将验收标准前的勾选框更新为 ✅，确保计划进度与实际保持一致。** 每个迭代须完成文档补充（含结构、配置、API 说明），并确保核心模块测试覆盖率 ≥ 80%。启动本地服务（如 `./mvnw spring-boot:run`）作业完成后务必停止，可用 `lsof -i:8080` 与 `ps aux | grep spring-boot` 排查遗留进程，如有残留立刻 `kill -9 <PID>` 释放端口。
 
 ## 共享讨论记录
 跨智能体的工程讨论集中记录在根目录 `AI_DISCUSSION.md`，贡献前请查阅最新共识并在文末追加观点，注明身份与日期。

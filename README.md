@@ -48,7 +48,18 @@ mvn clean install
 
 # 运行项目
 mvn spring-boot:run
+
+# 使用开发环境配置启动（dev profile）
+SPRING_PROFILES_ACTIVE=dev mvn spring-boot:run
+# 或
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ```
+
+### 质量保障
+
+- `./mvnw clean verify` —— 运行全部测试、生成 JaCoCo 覆盖率报告并校验覆盖率（核心工具包需 100%，辅助模块需 ≥ 90%）。
+- `./mvnw checkstyle:check` —— 以阿里巴巴规范执行 Checkstyle，规则文件位于 `config/checkstyle/alibaba-checkstyle.xml`。
+- 覆盖率报告输出在 `target/site/jacoco/index.html`，用于 CI 截图或人工复核。
 
 ### 健康检查
 
