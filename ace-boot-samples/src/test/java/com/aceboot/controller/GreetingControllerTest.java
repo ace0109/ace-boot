@@ -28,7 +28,7 @@ class GreetingControllerTest {
 
     @Test
     void shouldReturnValidationErrors() throws Exception {
-        String payload = "{\"name\":\" \",\"type\":\"wave\"}";
+        String payload = "{\"name\":\" \",\"type\":\"hi\"}";
         mockMvc.perform(post("/greetings")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(payload))

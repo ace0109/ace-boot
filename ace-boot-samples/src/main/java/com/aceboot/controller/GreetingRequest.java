@@ -1,8 +1,8 @@
 package com.aceboot.controller;
 
-import jakarta.validation.constraints.NotBlank;
-
 import com.aceboot.starter.web.validation.AllowedValues;
+
+import jakarta.validation.constraints.NotBlank;
 
 public class GreetingRequest {
 

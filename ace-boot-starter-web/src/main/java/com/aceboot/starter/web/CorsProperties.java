@@ -7,6 +7,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "aceboot.cors")
 public class CorsProperties {
 
+    private static final long DEFAULT_MAX_AGE_SECONDS = 1800;
+
     private boolean enabled = false;
 
     private List<String> allowedOrigins = List.of("*");
@@ -17,7 +19,7 @@ public class CorsProperties {
 
     private boolean allowCredentials = true;
 
-    private long maxAge = 1800;
+    private long maxAge = DEFAULT_MAX_AGE_SECONDS;
 
     public boolean isEnabled() {
         return enabled;

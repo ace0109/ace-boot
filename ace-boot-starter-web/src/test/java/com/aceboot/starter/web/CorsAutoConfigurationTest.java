@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.test.context.runner.WebApplicationContextRunner;
 import org.springframework.web.cors.CorsConfigurationSource;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CorsAutoConfigurationTest {
