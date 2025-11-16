@@ -1,8 +1,9 @@
 package com.aceboot.controller;
 
-import com.aceboot.common.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.aceboot.common.Result;
 
 @RestController
 public class HelloController {

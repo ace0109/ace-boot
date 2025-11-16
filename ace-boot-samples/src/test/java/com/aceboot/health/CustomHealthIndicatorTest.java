@@ -3,7 +3,6 @@ package com.aceboot.health;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.Status;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -17,7 +16,7 @@ class CustomHealthIndicatorTest {
     private final CustomHealthIndicator healthIndicator = new CustomHealthIndicator();
 
     @Test
-    void health_shouldReturnUp_whenServiceIsHealthy() {
+    void healthShouldReturnUpWhenServiceIsHealthy() {
         // when
         Health health = healthIndicator.health();
 
@@ -33,7 +32,7 @@ class CustomHealthIndicatorTest {
     }
 
     @Test
-    void health_shouldContainTimestamp() {
+    void healthShouldContainTimestamp() {
         // when
         Health health = healthIndicator.health();
 

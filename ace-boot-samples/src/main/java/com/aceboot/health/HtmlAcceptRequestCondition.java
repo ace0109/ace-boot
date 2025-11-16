@@ -1,11 +1,12 @@
 package com.aceboot.health;
 
-import jakarta.servlet.http.HttpServletRequest;
+import java.util.Locale;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 
-import java.util.Locale;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * 自定义请求条件：只有 Accept 包含 text/html 时才匹配。

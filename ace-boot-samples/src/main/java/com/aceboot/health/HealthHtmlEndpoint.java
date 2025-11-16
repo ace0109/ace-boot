@@ -1,7 +1,10 @@
 package com.aceboot.health;
 
-import com.aceboot.health.HtmlOnly;
-import lombok.RequiredArgsConstructor;
+import java.util.Collection;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.springframework.boot.actuate.health.CompositeHealth;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthComponent;
@@ -12,10 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
-import java.util.Collection;
-import java.util.Locale;
-import java.util.Map;
-import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 /**
  * 为浏览器提供 HTML 格式的健康检查视图。
@@ -23,6 +23,8 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 public class HealthHtmlEndpoint {
+
+    private static final int HTML_BUFFER_SIZE = 512;
 
     private final HealthEndpoint healthEndpoint;
 
@@ -34,7 +36,7 @@ public class HealthHtmlEndpoint {
     }
 
     private String buildDocument(HealthComponent root) {
-        StringBuilder html = new StringBuilder(512);
+        StringBuilder html = new StringBuilder(HTML_BUFFER_SIZE);
         html.append("<!DOCTYPE html>")
                 .append("<html lang=\"zh\">")
                 .append("<head>")
@@ -42,18 +44,22 @@ public class HealthHtmlEndpoint {
                 .append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>")
                 .append("<title>ACE-Boot 健康检查</title>")
                 .append("<style>")
-                .append("body{font-family:\"Segoe UI\",Arial,sans-serif;background:#f5f7fb;color:#1f2937;margin:0;padding:2rem;}")
+                .append("body{font-family:\"Segoe UI\",Arial,sans-serif;")
+                .append("background:#f5f7fb;color:#1f2937;margin:0;padding:2rem;}")
                 .append(".health-report{max-width:960px;margin:0 auto;}")
                 .append("h1{margin-bottom:1.5rem;font-size:1.75rem;color:#111827;}")
-                .append(".component{background:#fff;border-radius:12px;box-shadow:0 10px 25px rgba(15,23,42,0.1);padding:1rem 1.5rem;margin-bottom:1rem;}")
-                .append(".component-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;}")
+                .append(".component{background:#fff;border-radius:12px;box-shadow:0 10px 25px rgba(15,23,42,0.1);")
+                .append("padding:1rem 1.5rem;margin-bottom:1rem;}")
+                .append(".component-header{display:flex;align-items:center;justify-content:space-between;")
+                .append("margin-bottom:0.75rem;}")
                 .append(".component-name{font-weight:600;font-size:1.1rem;}")
                 .append(".status{padding:0.2rem 0.75rem;border-radius:999px;font-size:0.9rem;font-weight:600;}")
                 .append(".status.up{background:#ecfdf3;color:#027a48;}")
                 .append(".status.down{background:#fef3f2;color:#b42318;}")
                 .append(".status.unknown{background:#fef7c3;color:#b54708;}")
                 .append(".details{width:100%;border-collapse:collapse;margin-bottom:0.5rem;}")
-                .append(".details th{width:25%;text-align:left;padding:0.4rem 0.5rem;color:#475467;font-weight:600;font-size:0.9rem;}")
+                .append(".details th{width:25%;text-align:left;padding:0.4rem 0.5rem;")
+                .append("color:#475467;font-weight:600;font-size:0.9rem;}")
                 .append(".details td{padding:0.4rem 0.5rem;font-family:monospace;color:#1d2939;font-size:0.9rem;}")
                 .append(".details tr:nth-child(odd){background:#f9fafb;}")
                 .append(".details.empty{margin:0;color:#6b7280;font-style:italic;}")

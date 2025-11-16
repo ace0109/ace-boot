@@ -2,15 +2,16 @@ package com.aceboot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * 健康检查端点集成测试
@@ -26,7 +27,7 @@ class HealthCheckIntegrationTest {
     private MockMvc mockMvc;
 
     @Test
-    void actuatorHealth_shouldReturnUp() throws Exception {
+    void actuatorHealthShouldReturnUp() throws Exception {
         mockMvc.perform(get("/actuator/health"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status", is("UP")))
@@ -36,7 +37,7 @@ class HealthCheckIntegrationTest {
     }
 
     @Test
-    void actuatorHealth_shouldContainPingComponent() throws Exception {
+    void actuatorHealthShouldContainPingComponent() throws Exception {
         mockMvc.perform(get("/actuator/health"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.components.ping").exists())
@@ -44,7 +45,7 @@ class HealthCheckIntegrationTest {
     }
 
     @Test
-    void actuatorHealth_shouldContainCustomComponent() throws Exception {
+    void actuatorHealthShouldContainCustomComponent() throws Exception {
         mockMvc.perform(get("/actuator/health"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.components.custom").exists())
@@ -53,7 +54,7 @@ class HealthCheckIntegrationTest {
     }
 
     @Test
-    void actuatorHealth_shouldReturnHtml_whenAcceptIsTextHtml() throws Exception {
+    void actuatorHealthShouldReturnHtmlWhenAcceptIsTextHtml() throws Exception {
         mockMvc.perform(get("/actuator/health").accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))

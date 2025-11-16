@@ -1,11 +1,11 @@
 package com.aceboot.health;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * 自定义健康检查指示器
@@ -31,7 +31,8 @@ public class CustomHealthIndicator implements HealthIndicator {
                     .withDetail("timestamp", currentTime)
                     .withDetail("description", "ACE-Boot service is healthy")
                     .build();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return Health.down()
                     .withDetail("error", e.getMessage())
                     .build();

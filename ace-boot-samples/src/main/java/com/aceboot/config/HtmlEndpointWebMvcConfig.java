@@ -1,7 +1,7 @@
 package com.aceboot.config;
 
-import com.aceboot.health.HtmlAcceptRequestCondition;
-import com.aceboot.health.HtmlOnly;
+import java.lang.reflect.Method;
+
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcRegistrations;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -9,7 +9,8 @@ import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import java.lang.reflect.Method;
+import com.aceboot.health.HtmlAcceptRequestCondition;
+import com.aceboot.health.HtmlOnly;
 
 /**
  * 将标准 MVC 映射的顺序提升到最高优先级，
