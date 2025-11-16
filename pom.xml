@@ -18,6 +18,7 @@
 	<modules>
 		<module>ace-boot-common</module>
 		<module>ace-boot-samples</module>
+		<module>ace-boot-starter-web</module>
 	</modules>
 
 	<properties>

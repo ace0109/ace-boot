@@ -195,10 +195,10 @@ Task 4.3: JSON 工具选型 (1h)
 ```
 Task 5.1: 创建ace-boot-starter-web模块 (2h)
 ├── 验收标准：
-│   □ 自动配置类正确加载
-│   □ META-INF/spring.factories配置
-│   □ 可被其他模块引用
-└── 状态：待开始
+│   ✅ 自动配置类正确加载
+│   ✅ META-INF/spring.factories配置
+│   ✅ 可被其他模块引用
+└── 状态：已完成
 
 Task 5.2: 集成参数验证 (2h)
 ├── 验收标准：
