@@ -1,16 +1,15 @@
 package com.aceboot.common;
 
-import org.junit.jupiter.api.Test;
-
 import java.time.Instant;
 
+import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ResultTest {
 
     @Test
-    void success_shouldPopulateDefaultCodeAndMessage() {
+    void successShouldPopulateDefaultCodeAndMessage() {
         Result<String> result = Result.success("payload");
 
         assertThat(result.getCode()).isEqualTo("SUCCESS");
@@ -21,7 +20,7 @@ class ResultTest {
     }
 
     @Test
-    void success_withCustomMessageShouldUseProvidedMessage() {
+    void successWithCustomMessageShouldUseProvidedMessage() {
         Result<Integer> result = Result.success("created", 1);
 
         assertThat(result.getCode()).isEqualTo("SUCCESS");
@@ -30,7 +29,7 @@ class ResultTest {
     }
 
     @Test
-    void failure_shouldNotExposeData() {
+    void failureShouldNotExposeData() {
         Result<Void> result = Result.failure("ERR", "boom");
 
         assertThat(result.getCode()).isEqualTo("ERR");
@@ -55,4 +54,3 @@ class ResultTest {
         assertThat(result.getTimestamp()).isSameAs(first);
     }
 }
-

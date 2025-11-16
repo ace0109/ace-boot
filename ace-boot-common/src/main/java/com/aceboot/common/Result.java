@@ -1,9 +1,9 @@
 package com.aceboot.common;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.time.Instant;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * 通用的 API 响应包装类，提供统一的 code/message/data/timestamp 结构。
@@ -60,4 +60,3 @@ public final class Result<T> {
         return DEFAULT_SUCCESS_CODE.equals(this.code);
     }
 }
-
