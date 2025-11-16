@@ -2,10 +2,10 @@ package com.aceboot.common.util;
 
 import java.util.Map;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 
 class JsonHelperTest {
 

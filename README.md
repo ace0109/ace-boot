@@ -86,6 +86,32 @@ curl http://localhost:8080/actuator/health
 }
 ```
 
+### 参数校验与示例
+
+- Web Starter 默认集成 `jakarta.validation`，并扩展了 `@AllowedValues` 注解，可用于限制字符串字段的枚举值。
+- 统一的 `GlobalExceptionHandler` 会把校验异常转换为 `VALIDATION_ERROR`，并返回首个字段的友好提示文案。
+- 示例接口 `POST /greetings` 接收 `name`、`type` 字段，其中 `type` 仅支持 `hi/hello`。
+
+请求示例：
+
+```bash
+curl -X POST http://localhost:8080/greetings \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Ace","type":"hi"}'
+```
+
+成功响应：
+
+```json
+{"code":"SUCCESS","message":"OK","data":"Hi, Ace!"}
+```
+
+当 `name` 留空时，响应：
+
+```json
+{"code":"VALIDATION_ERROR","message":"昵称不能为空"}
+```
+
 ### Docker部署
 
 ```bash

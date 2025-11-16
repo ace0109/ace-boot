@@ -1,7 +1,5 @@
 package com.aceboot.starter.web;
 
-import com.aceboot.common.web.RequestLogInterceptor;
-import com.aceboot.common.web.RequestLogProperties;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -11,6 +9,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.aceboot.common.web.RequestLogInterceptor;
+import com.aceboot.common.web.RequestLogProperties;
 
 /**
  * 自动配置 Web 层基础能力：启用请求日志拦截器并开放配置属性。

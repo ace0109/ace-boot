@@ -1,12 +1,11 @@
 package com.aceboot.starter.web;
 
-import com.aceboot.common.web.RequestLogInterceptor;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.test.context.runner.WebApplicationContextRunner;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
+import com.aceboot.common.web.RequestLogInterceptor;
 
 class AceBootWebAutoConfigurationTest {
 

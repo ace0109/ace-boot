@@ -28,20 +28,28 @@ class DateHelperTest {
 
     @Test
     void shouldFormatWithPattern() {
-        LocalDateTime time = LocalDateTime.of(2025, 2, 3, 4, 5, 6);
+        final int year = 2025;
+        final int month = 2;
+        final int day = 3;
+        final int hour = 4;
+        final int minute = 5;
+        final int second = 6;
+        LocalDateTime time = LocalDateTime.of(year, month, day, hour, minute, second);
         assertThat(DateHelper.format(time, "yyyy/MM/dd HH:mm:ss"))
                 .isEqualTo("2025/02/03 04:05:06");
     }
 
     @Test
     void shouldParseWithPattern() {
+        final int expectedYear = 2025;
         LocalDateTime parsed = DateHelper.parse("2025-02-03 04:05:06", "yyyy-MM-dd HH:mm:ss");
-        assertThat(parsed.getYear()).isEqualTo(2025);
+        assertThat(parsed.getYear()).isEqualTo(expectedYear);
     }
 
     @Test
     void shouldParseFlexiblePatterns() {
         LocalDateTime parsed = DateHelper.parseFlexible("2025/02/03", "yyyyMMdd", "yyyy/MM/dd");
-        assertThat(parsed.getMonthValue()).isEqualTo(2);
+        final int expectedMonth = 2;
+        assertThat(parsed.getMonthValue()).isEqualTo(expectedMonth);
     }
 }
